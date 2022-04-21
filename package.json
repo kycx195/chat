@@ -1,0 +1,32 @@
+{
+  "name": "chatwebpack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./src/server.js",
+    "dev": "npx webpack -w"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.17.9",
+    "@babel/preset-env": "^7.16.11",
+    "babel-loader": "^8.2.4",
+    "clean-webpack-plugin": "^4.0.0",
+    "copy-webpack-plugin": "^10.2.4",
+    "nodemon-webpack-plugin": "^4.7.1",
+    "webpack": "^5.72.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.8.1"
+  },
+  "dependencies": {
+    "bluebird": "^3.7.2",
+    "dotenv-webpack": "^7.1.0",
+    "express": "^4.17.3",
+    "mongoose": "^6.3.0",
+    "swagger-ui-express": "^4.3.0",
+    "webpack-node-externals": "^3.0.0"
+  }
+}
