@@ -12,21 +12,9 @@ const router = express.Router()
 
 const initRoutes = (app) => {
 
-  router.get('/', () => {
-    /* 
-     #swagger.tags = ['Home']
-     #swagger.responses[200] = {
-           description: 'User successfully obtained.',
-           schema: { $ref: '#/definitions/User' }
-      } 
-   */
-    home.getHome
-  })
+  router.get('/', home.getHome)
 
-  router.get('/login-register', () => { 
-    // #swagger.tags = ['Home']
-    auth.loginRegistry
-  })
+  router.get('/login-register', auth.loginRegistry)
 
   router.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
