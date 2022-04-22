@@ -2,13 +2,15 @@ const path = require('path')
 const NodemonPlugin = require('nodemon-webpack-plugin')
 const nodeExternals = require('webpack-node-externals')
 const Dotenv = require('dotenv-webpack')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 const outputPath = path.resolve(__dirname, 'dist')
 
 module.exports = {
   mode: 'development',
-  entry: './src/server.js',
+  entry: [
+    './src/server.js',
+    './src/swagger.js',
+  ],
   output: {
     filename: 'server.js',
     path: outputPath
@@ -37,13 +39,5 @@ module.exports = {
   plugins: [
     new NodemonPlugin(),
     new Dotenv(),
-    new CopyWebpackPlugin({
-      patterns: [
-        './node_modules/swagger-ui-dist/swagger-ui.css',
-        './node_modules/swagger-ui-dist/swagger-ui-bundle.js',
-        './node_modules/swagger-ui-dist/swagger-ui-standalone-preset.js',
-        './node_modules/swagger-ui-dist/swagger-ui.css'
-      ]
-    }),
   ]
 }

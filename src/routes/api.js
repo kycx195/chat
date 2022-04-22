@@ -1,33 +1,34 @@
 import express from 'express'
-import { auth, home } from '../controllers'
+import { home, auth } from '../controllers'
 import swaggerUi from 'swagger-ui-express'
-import swaggerJsDoc from 'swagger-jsdoc'
+import swaggerFile from '../swagger-output.json'
 
 const router = express.Router()
 
-const swaggerOptions = {
-  swaggerDefinition: {
-    info: {
-      title: 'API Documentation',
-      version: '1.0.0',
-      description: 'API Documentation'
-    },
-  },
-  apis: ['./src/routes/api.js'],
-}
-
-const swaggerDocs = swaggerJsDoc(swaggerOptions)
 
 /**
  * Init all routes
  */
 
 const initRoutes = (app) => {
-  router.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs))
 
-  router.get('/', home.getHome)
+  router.get('/', () => {
+    /* 
+     #swagger.tags = ['Home']
+     #swagger.responses[200] = {
+           description: 'User successfully obtained.',
+           schema: { $ref: '#/definitions/User' }
+      } 
+   */
+    home.getHome
+  })
 
-  router.get('/login-register', auth.loginRegistry)
+  router.get('/login-register', () => { 
+    // #swagger.tags = ['Home']
+    auth.loginRegistry
+  })
+
+  router.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
   return app.use('/', router)
 }

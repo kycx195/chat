@@ -3,5 +3,5 @@
 
 // export const auth = authController
 // export const home = homeController 
-export * from './authController'
-export * from './homeController'
+export * as auth from './authController'
+export * as home from './homeController'
