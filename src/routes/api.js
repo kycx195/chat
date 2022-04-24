@@ -2,6 +2,8 @@ import express from 'express'
 import { home, auth } from '../controllers'
 import swaggerUi from 'swagger-ui-express'
 import swaggerFile from '../swagger-output.json'
+import { signupValidation } from '../validations'
+import { validate } from '../common'
 
 const router = express.Router()
 
@@ -14,7 +16,9 @@ const initRoutes = (app) => {
 
   router.get('/', home.getHome)
 
-  router.get('/login-register', auth.loginRegistry)
+  router.post('/register', validate(signupValidation), auth.registry)
+
+  router.get('/create-admin', auth.createAdmin)
 
   router.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 

@@ -35,30 +35,23 @@
   "paths": {
     "/": {
       "get": {
-        "tags": [
-          "Test"
-        ],
         "description": "",
         "parameters": [],
-        "responses": {
-          "200": {
-            "description": "User successfully obtained.",
-            "schema": {
-              "$ref": "#/definitions/User"
-            }
-          }
-        }
+        "responses": {}
       }
     },
-    "/login-register": {
+    "/register": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/create-admin": {
       "get": {
         "description": "",
         "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
+        "responses": {}
       }
     }
   },

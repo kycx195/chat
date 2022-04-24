@@ -11,11 +11,18 @@ const connectDb = () => {
   const DB_USERNAME = process.env.DB_USERNAME;
   const DB_PASSWORD = process.env.DB_PASSWORD;
 
-  const URI = `${DB_CONNECTION}://${DB_HOST}:${DB_PORT}/${DB_NAME}`;
-  // const URI = `${DB_CONNECTION}://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`;
-  console.log(URI);
 
-  return mongoose.connect(URI);
+  let URI = '';
+  if (DB_USERNAME && DB_PASSWORD) {
+    URI = `${DB_CONNECTION}://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`;
+  } else {
+    URI = `${DB_CONNECTION}://${DB_HOST}:${DB_PORT}/${DB_NAME}`;
+  }
+
+  console.log(URI);
+  
+
+  return mongoose.connect('mongodb://root:root@localhost:27017/chat?authSource=admin', { useNewUrlParser: true });
 };
 
 export default connectDb;
